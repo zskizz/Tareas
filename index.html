@@ -25,6 +25,7 @@
             width: 120px;
             height: 120px;
             animation: spin 2s linear infinite;
+            margin-bottom: 20px;
         }
 
         @keyframes spin {
@@ -36,27 +37,12 @@
             text-align: center;
         }
 
-        #title-container {
+        #title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        #title {
-            font-size: 2em;
-            font-weight: bold;
-            background: linear-gradient(to right, orange, yellow);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0 20px;
-        }
-
-        .sun {
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, yellow 40%, orange 60%);
-            border-radius: 50%;
         }
 
         #slideshow {
@@ -83,27 +69,11 @@
         .hidden {
             display: none;
         }
-
-        @media (max-width: 768px) {
-            #title {
-                font-size: 1.5em;
-            }
-
-            .sun {
-                width: 30px;
-                height: 30px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="title-container">
-            <div class="sun"></div>
-            <h1 id="title">Tarea de verano</h1>
-            <div class="sun"></div>
-        </div>
-        <div class="loader" id="loader"></div>
+        <h1 id="title">Tarea de verano<span class="loader" id="loader"></span></h1>
         <div id="slideshow" class="hidden">
             <img src="IMG_4646.jpg" alt="Diapositiva 1">
             <img src="IMG_4651.jpeg" alt="Diapositiva 2">
@@ -113,7 +83,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const loader = document.getElementById("loader");
-            const titleContainer = document.getElementById("title-container");
             const slideshow = document.getElementById("slideshow");
             const images = slideshow.getElementsByTagName("img");
             let currentIndex = 0;
@@ -127,12 +96,10 @@
 
             // Oculta el loader y muestra el contenido después de 3 segundos
             setTimeout(() => {
-               /**/ loader.style.display = "none";
-                
-                titleContainer.style.display = "none";
+                loader.style.display = "none";
                 slideshow.classList.remove("hidden");
                 showSlide(currentIndex);
-            }, 3990);
+            }, 3000);
 
             // Función para mostrar las diapositivas
             function showSlide(index) {

@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
         loader.style.display = "none";
         content.classList.remove("hidden");
-        title.style.display = "none";
         slideshow.classList.remove("hidden");
         showSlide(currentIndex);
     }, 3000);

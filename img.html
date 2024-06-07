@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diapositivas</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #slideshow {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #slideshow img.active {
+            opacity: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="slideshow" class="hidden">
+            <img src="IMG_4646.jpg" alt="Diapositiva 1">
+            <img src="IMG_4651.jpeg" alt="Diapositiva 2">
+            <img src="IMG_4652.jpg" alt="Diapositiva 3">
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slideshow = document.getElementById("slideshow");
+            const images = slideshow.getElementsByTagName("img");
+            let currentIndex = 0;
+
+            // Oculta el loader y muestra el contenido después de 3 segundos
+            setTimeout(() => {
+                slideshow.classList.remove("hidden");
+                slideshow.style.opacity = 1;
+                showSlide(currentIndex);
+            }, 3000);
+
+            // Función para mostrar las diapositivas
+            function showSlide(index) {
+                for (let i = 0; i < images.length; i++) {
+                    images[i].classList.remove("active");
+                }
+                images[index].classList.add("active");
+                currentIndex = (index + 1) % images.length;
+                setTimeout(() => showSlide(currentIndex), 3000);
+            }
+        });
+    </script>
+</body>
+</html>

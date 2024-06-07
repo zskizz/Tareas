@@ -15,6 +15,7 @@
             align-items: center;
             background-color: #f0f0f0;
             flex-direction: column;
+            font-family: Arial, sans-serif;
         }
 
         .loader {
@@ -35,9 +36,27 @@
             text-align: center;
         }
 
+        #title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
         #title {
-            font-size: 3em;
+            font-size: 2em;
             font-weight: bold;
+            background: linear-gradient(to right, orange, yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 20px;
+        }
+
+        .sun {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, yellow 40%, orange 60%);
+            border-radius: 50%;
         }
 
         #slideshow {
@@ -51,7 +70,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 400%;
+            width: 100%;
             height: auto;
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -64,13 +83,27 @@
         .hidden {
             display: none;
         }
+
+        @media (max-width: 768px) {
+            #title {
+                font-size: 1.5em;
+            }
+
+            .sun {
+                width: 30px;
+                height: 30px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="loader" id="loader"></div>
-    <h1 id="title">Tarea de verano</h1>
-    <div class="container hidden" id="content">
-        <h1 id="title">Tarea de verano</h1>
+    <div class="container">
+        <div id="title-container">
+            <div class="sun"></div>
+            <h1 id="title">Tarea de verano</h1>
+            <div class="sun"></div>
+        </div>
+        <div class="loader" id="loader"></div>
         <div id="slideshow" class="hidden">
             <img src="IMG_4646.jpg" alt="Diapositiva 1">
             <img src="IMG_4651.jpeg" alt="Diapositiva 2">
@@ -80,8 +113,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const loader = document.getElementById("loader");
-            const content = document.getElementById("content");
-            const title = document.getElementById("title");
+            const titleContainer = document.getElementById("title-container");
             const slideshow = document.getElementById("slideshow");
             const images = slideshow.getElementsByTagName("img");
             let currentIndex = 0;
@@ -96,7 +128,7 @@
             // Oculta el loader y muestra el contenido después de 3 segundos
             setTimeout(() => {
                 loader.style.display = "none";
-                content.classList.remove("hidden");
+                titleContainer.style.display = "none";
                 slideshow.classList.remove("hidden");
                 showSlide(currentIndex);
             }, 3000);

@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const loader = document.getElementById("loader");
+    const content = document.getElementById("content");
     const title = document.getElementById("title");
     const slideshow = document.getElementById("slideshow");
     const images = slideshow.getElementsByTagName("img");
     let currentIndex = 0;
 
     setTimeout(() => {
+        loader.style.display = "none";
+        content.classList.remove("hidden");
         title.style.display = "none";
         slideshow.classList.remove("hidden");
         showSlide(currentIndex);

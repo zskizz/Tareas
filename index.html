@@ -69,11 +69,11 @@
 <body>
     <div class="loader" id="loader"></div>
     <div class="container hidden" id="content">
-        <div><h1 id="title">Tarea de verano</h1></div>
+        <h1 id="title">Tarea de verano</h1>
         <div id="slideshow" class="hidden">
-            <img src="IMG_4646.jpg" alt="Diapositiva 1">
-            <img src="IMG_4651.jpg" alt="Diapositiva 2">
-            <img src="IMG_4652.jpg" alt="Diapositiva 3">
+            <img src="img/IMG_4646.jpg" alt="Diapositiva 1">
+            <img src="img/IMG_4651.jpg" alt="Diapositiva 2">
+            <img src="img/IMG_4652.jpg" alt="Diapositiva 3">
         </div>
     </div>
     <script>
@@ -84,6 +84,13 @@
             const slideshow = document.getElementById("slideshow");
             const images = slideshow.getElementsByTagName("img");
             let currentIndex = 0;
+
+            // Verifica que las imágenes se carguen correctamente
+            for (let img of images) {
+                img.onerror = function() {
+                    console.error(`Error al cargar la imagen: ${img.src}`);
+                };
+            }
 
             setTimeout(() => {
                 loader.style.display = "none";

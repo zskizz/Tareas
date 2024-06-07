@@ -127,11 +127,12 @@
 
             // Oculta el loader y muestra el contenido después de 3 segundos
             setTimeout(() => {
-                loader.style.display = "none";
+               /**/ loader.style.display = "none";
+                
                 titleContainer.style.display = "none";
                 slideshow.classList.remove("hidden");
                 showSlide(currentIndex);
-            }, 3000);
+            }, 3990);
 
             // Función para mostrar las diapositivas
             function showSlide(index) {

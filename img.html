@@ -26,8 +26,6 @@
             width: 80%;
             max-width: 800px;
             margin: 0 auto;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
         }
 
         #slideshow img {
@@ -43,15 +41,11 @@
         #slideshow img.active {
             opacity: 1;
         }
-
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="slideshow" class="hidden">
+        <div id="slideshow">
             <img src="IMG_4646.jpg" alt="Diapositiva 1">
             <img src="IMG_4651.jpeg" alt="Diapositiva 2">
             <img src="IMG_4652.jpg" alt="Diapositiva 3">
@@ -63,13 +57,6 @@
             const images = slideshow.getElementsByTagName("img");
             let currentIndex = 0;
 
-            // Oculta el loader y muestra el contenido después de 3 segundos
-            setTimeout(() => {
-                slideshow.classList.remove("hidden");
-                slideshow.style.opacity = 1;
-                showSlide(currentIndex);
-            }, 3000);
-
             // Función para mostrar las diapositivas
             function showSlide(index) {
                 for (let i = 0; i < images.length; i++) {
@@ -79,6 +66,8 @@
                 currentIndex = (index + 1) % images.length;
                 setTimeout(() => showSlide(currentIndex), 3000);
             }
+
+            showSlide(currentIndex);
         });
     </script>
 </body>
